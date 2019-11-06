@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Serilog sink that writes to the Seq log server over HTTP/HTTPS.</Description>
+    <Description>Serilog sink that writes to the Seq log server over HTTP/HTTPS from a Blazor client.</Description>
     <VersionPrefix>4.1.0</VersionPrefix>
     <Authors>Serilog Contributors</Authors>
     <Copyright>Copyright © Serilog Contributors 2013-2019</Copyright>
-    <TargetFrameworks>netstandard1.1;netstandard1.3;net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <AssemblyName>Serilog.Sinks.Seq</AssemblyName>
+    <AssemblyName>Serilog.Sinks.Seq.Blazor</AssemblyName>
     <RootNamespace>Serilog</RootNamespace>
     <AssemblyOriginatorKeyFile>../../assets/Serilog.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
-    <PackageId>Serilog.Sinks.Seq</PackageId>
-    <PackageTags>serilog;seq</PackageTags>
+    <PackageId>Serilog.Sinks.Seq.Blazor</PackageId>
+    <PackageTags>serilog;seq;blazor</PackageTags>
     <PackageIconUrl>https://serilog.net/images/serilog-sink-seq-nuget.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/serilog/serilog-sinks-seq</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
@@ -23,38 +23,17 @@
     <GenerateAssemblyVersionAttribute>true</GenerateAssemblyVersionAttribute>
   </PropertyGroup>
   
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <DefineConstants>$(DefineConstants);DURABLE;THREADING_TIMER</DefineConstants>
-  </PropertyGroup>
-  
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <DefineConstants>$(DefineConstants);DURABLE;THREADING_TIMER</DefineConstants>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <DefineConstants>$(DefineConstants);DURABLE;THREADING_TIMER;HRESULTS</DefineConstants>
-  </PropertyGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System.Net.Http" />
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.2.0" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.0" />
-  </ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.1.0-preview2.19528.8" />
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-    <PackageReference Include="System.Net.Http" Version="4.3.2" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="System.Net.Http" Version="4.3.2" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard1.1' ">
-    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
   </ItemGroup>
 
 </Project>

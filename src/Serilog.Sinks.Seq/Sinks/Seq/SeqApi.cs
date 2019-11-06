@@ -17,7 +17,7 @@ using Serilog.Events;
 
 namespace Serilog.Sinks.Seq
 {
-    class SeqApi
+    static class SeqApi
     {
         public const string BulkUploadResource = "api/events/raw";
         public const string ApiKeyHeaderName = "X-Seq-ApiKey";
