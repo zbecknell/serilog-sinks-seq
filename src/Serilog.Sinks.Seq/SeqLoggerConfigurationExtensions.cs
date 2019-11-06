@@ -65,7 +65,7 @@ namespace Serilog
         /// durable log shipping.</param>
         /// <returns>Logger configuration, allowing configuration to continue.</returns>
         /// <exception cref="ArgumentNullException">A required parameter is null.</exception>
-        public static LoggerConfiguration Seq(
+        public static LoggerConfiguration SeqBlazor(
             this LoggerSinkConfiguration loggerSinkConfiguration,
             string serverUrl,
             LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum,
